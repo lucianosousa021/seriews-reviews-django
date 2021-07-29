@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="margin-top: 10px">
+    <a type="button" class="btn btn-dark" href="{% url 'criar' %}">Adicionar Review</a>
+    </div>
+    <table class="table table-striped table-hover table-sm align-middle">
+        <thead>
+            <tr>
+                <th scope="col">Série</th>
+                <th scope="col">Genero</th>
+                <th scope="col">Avaliação</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+            <tr>
+                <td>{{review.serie_name}}</td>
+                <td>{{review.serie_genre}}</td>
+                <td>{{review.serie_rating}}</td>
+                <td><a type="button" class="btn btn-success" href="{% url 'vizualizar' review.id %}">Visualizar</a></td>
+                <td><a type="button" class="btn btn-primary" href="{% url 'editar' review.id %}">Editar</a></td>
+                <td><a type="button" class="btn btn-danger" href="{% url 'deletar' review.id %}">Deletar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

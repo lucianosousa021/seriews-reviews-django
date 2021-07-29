@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="container d-flex justify-content-center">
+    <form action="" method="post" class="col-6" style="background-color: #f8f9fa; padding:10px; margin-top:10px;">
+        {% csrf_token %}
+
+        <div class="form-group d-flex flex-column">
+            <label for="">Nome da Serie</label>
+            <input class="form-control" value="{{ update_form.serie_name }}" name="serie_name">
+        </div>
+
+        <div class="form-group d-flex flex-column">
+            <label for="">Gênero da Serie</label>
+            <input class="form-control" value="{{ update_form.serie_genre }}" name="serie_genre">
+        </div>
+
+        <div class="form-group d-flex flex-column">
+            <label for="">Nota da Serie</label>
+            <input class="form-control" value="{{ update_form.serie_rating }}" name="serie_rating">
+            {% for error in field.serie_rating.errors %}
+            <section class="alert alert-danger" role="alert">
+            {{ field.serie_rating.errors }}
+            </section>
+            {% endfor %}
+        </div>
+
+        <div class="form-group d-flex flex-column">
+            <label for="">Sinopse da Serie</label>
+            <textarea type="textarea"class="form-control" name="serie_info">{{ update_form.serie_info }}</textarea>
+        </div>
+
+        <div class="form-group d-flex flex-column">
+            <label for="">Observações da Serie</label>
+            <textarea class="form-control" name="serie_note">{{ update_form.serie_note }}</textarea>
+        </div>
+
+        <div style="margin-top: 5px">
+            <input type="submit" class="btn btn-success" value="Salvar">
+            <a href="{% url 'index' %}" type="button" class="btn btn-danger">Cancelar</a>
+        </div>
+    </form>
+</section>
+
+
+{% endblock %}
